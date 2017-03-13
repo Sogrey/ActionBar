@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">ActionBar</string>
+    <string name="txt_action_bar_title">这是标题</string>
+</resources>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+    <declare-styleable name="CustomActionBar">
+        <attr name="titleBarBackground" format="reference|color" />
+        <attr name="leftImage" format="reference" />
+        <attr name="leftImageVisiable">
+            <!-- Visible on screen; the default value. -->
+            <enum name="visible" value="0" />
+            <!-- Not displayed, but taken into account during layout (space is left for it). -->
+            <enum name="invisible" value="1" />
+            <!-- Completely hidden, as if the view had not been added. -->
+            <enum name="gone" value="2" />
+        </attr>
+        <attr name="leftText" format="string|reference" />
+        <attr name="leftTextVisibale">
+            <!-- Visible on screen; the default value. -->
+            <enum name="visible" value="0" />
+            <!-- Not displayed, but taken into account during layout (space is left for it). -->
+            <enum name="invisible" value="1" />
+            <!-- Completely hidden, as if the view had not been added. -->
+            <enum name="gone" value="2" />
+        </attr>
+        <attr name="leftTextFontSize" format="dimension|reference" />
+        <attr name="leftTextColor" format="color|reference" />
+        <attr name="midText" format="string|reference" />
+        <attr name="midTextVisiable">
+            <!-- Visible on screen; the default value. -->
+            <enum name="visible" value="0" />
+            <!-- Not displayed, but taken into account during layout (space is left for it). -->
+            <enum name="invisible" value="1" />
+            <!-- Completely hidden, as if the view had not been added. -->
+            <enum name="gone" value="2" />
+        </attr>
+        <attr name="midTextFontSize" format="dimension|reference" />
+        <attr name="midTextFontColor" format="color|reference" />
+        <attr name="rightText" format="string|reference" />
+        <attr name="rightTextVisible">
+            <!-- Visible on screen; the default value. -->
+            <enum name="visible" value="0" />
+            <!-- Not displayed, but taken into account during layout (space is left for it). -->
+            <enum name="invisible" value="1" />
+            <!-- Completely hidden, as if the view had not been added. -->
+            <enum name="gone" value="2" />
+        </attr>
+        <attr name="rightTextFontSize" format="dimension|reference" />
+        <attr name="rightTextColor" format="color|reference" />
+        <attr name="rightImage" format="reference" />
+        <attr name="rightImageVisible">
+            <!-- Visible on screen; the default value. -->
+            <enum name="visible" value="0" />
+            <!-- Not displayed, but taken into account during layout (space is left for it). -->
+            <enum name="invisible" value="1" />
+            <!-- Completely hidden, as if the view had not been added. -->
+            <enum name="gone" value="2" />
+        </attr>
+    </declare-styleable>
+</resources>
