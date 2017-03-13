@@ -1,4 +1,5 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.novoda.bintray-release'//添加
 
 android {
     compileSdkVersion 25
@@ -19,6 +20,42 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+}
+
+
+//添加
+publish {
+    userOrg = 'sogrey'//bintray.com用户名
+    groupId = 'org.sogrey'//jcenter上的路径
+    artifactId = 'ActionBar'//项目名称
+    publishVersion = '0.0.1'//版本号
+    desc = 'Android Custom ActionBar and NavigatorBar'//描述，不重要
+    website = 'https://github.com/Sogrey/ActionBar'//网站，不重要
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = "utf-8"
+}
+
+task sourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier = 'sources'
+}
+
+task javadoc(type: Javadoc) {
+    source = android.sourceSets.main.java.srcDirs
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+    options.encoding = "UTF-8"
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+artifacts {
+    archives javadocJar
+    archives sourcesJar
 }
 
 dependencies {
