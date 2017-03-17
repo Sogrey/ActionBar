@@ -23,14 +23,9 @@ import org.sogrey.actionbar.base.BaseNavigatorBar;
  */
 
 public class CustomActionBar extends BaseNavigatorBar {
-    private static final int[] mVisibility = {View.VISIBLE, View.INVISIBLE, View.GONE};
     private ImageView mImgLeft, mImgRight;
     private TextView mTxtTitle;
     private LinearLayout mLytToolsParent;
-
-    private int mTxtTitleColor = Color.parseColor("#ffffff");
-    private int mActionBarBackground = Color.parseColor("#8194AA");
-    private int mTxtTitleSize = 18;
 
     public CustomActionBar(Context context) {
         super(context);
@@ -78,12 +73,191 @@ public class CustomActionBar extends BaseNavigatorBar {
         mImgRight.setVisibility(mVisibility[rightImageVisibility]);
         mTxtTitle.setVisibility(mVisibility[midTitleVisibility]);
         mTxtTitle.setTextColor(midTitleColor);
-        mTxtTitle.setTextSize(TypedValue.COMPLEX_UNIT_DIP, midTitleSize);
+        mTxtTitle.setTextSize(TypedValue.COMPLEX_UNIT_SP, midTitleSize);
         mTxtTitle.setText(midTitleText);
 
         typedArray.recycle();
     }
 
+
+
+    //------------------点击事件-----------------
+
+    /**
+     * 左上角ImageView点击事件
+     *
+     * @param l 点击事件
+     * @return 返回当前实例便于链式操作
+     */
+    public CustomActionBar setOnLeftImageClickListner(OnClickListener l) {
+        mImgLeft.setOnClickListener(l);
+        return this;
+    }
+
+    /**
+     * 右上角ImageView点击事件
+     *
+     * @param l 点击事件
+     * @return 返回当前实例便于链式操作
+     */
+    public CustomActionBar setOnRightImageClickListner(OnClickListener l) {
+        mImgRight.setOnClickListener(l);
+        return this;
+    }
+    //--------------------显示隐藏-------------------
+
+    /**
+     * 设置左上角Image显示与隐藏。
+     *
+     * @param visibility 可选值：{@link android.view.View#VISIBLE},{@link android.view.View#GONE},{@link android.view.View#INVISIBLE}
+     * @return 返回当前实例便于链式操作
+     */
+    public CustomActionBar setLeftImageVisibility(int visibility) {
+        mImgLeft.setVisibility(View.VISIBLE);
+        return this;
+    }
+
+    /**
+     * 设置右上角Image显示与隐藏。
+     *
+     * @param visibility 可选值：{@link android.view.View#VISIBLE},{@link android.view.View#GONE},{@link android.view.View#INVISIBLE}
+     * @return 返回当前实例便于链式操作
+     */
+    public CustomActionBar setRightImageVisibility(int visibility) {
+        mImgRight.setVisibility(View.VISIBLE);
+        return this;
+    }
+
+    /**
+     * 设置标题显示与隐藏。
+     *
+     * @param visibility 可选值：{@link android.view.View#VISIBLE},{@link android.view.View#GONE},{@link android.view.View#INVISIBLE}
+     * @return 返回当前实例便于链式操作
+     */
+    public CustomActionBar setTitleVisibility(int visibility) {
+        mTxtTitle.setVisibility(View.VISIBLE);
+        return this;
+    }
+
+    /**
+     * 设置右上角工具条父容器显示与隐藏，其显示或隐藏会影响到其子控件的可视与否。
+     *
+     * @param visibility 可选值：{@link android.view.View#VISIBLE},{@link android.view.View#GONE},{@link android.view.View#INVISIBLE}
+     * @return 返回当前实例便于链式操作
+     */
+    public CustomActionBar setLytToolsParentVisibility(int visibility) {
+        mLytToolsParent.setVisibility(View.VISIBLE);
+        return this;
+    }
+
+    //--------------------Left Image Resource-------------------
+
+    /**
+     * 设置左上角图标显示资源
+     *
+     * @param bm Bitmap资源
+     * @return 返回当前实例便于链式操作
+     */
+    public CustomActionBar setLeftImageBitmap(Bitmap bm) {
+        mImgLeft.setImageBitmap(bm);
+        return this;
+    }
+
+    /**
+     * 设置左上角图标显示资源
+     *
+     * @param drawable Drawable资源
+     * @return 返回当前实例便于链式操作
+     */
+    public CustomActionBar setLeftImageDrawable(Drawable drawable) {
+        mImgLeft.setImageDrawable(drawable);
+        return this;
+    }
+
+    /**
+     * 设置左上角图标显示资源
+     *
+     * @param resId 资源文件ID
+     * @return 返回当前实例便于链式操作
+     */
+    public CustomActionBar setLeftImageResource(int resId) {
+        mImgLeft.setImageResource(resId);
+        return this;
+    }
+
+    //--------------------Right Image Resource-------------------
+
+    /**
+     * 设置右上角图标显示资源
+     *
+     * @param bm Bitmap资源
+     * @return 返回当前实例便于链式操作
+     */
+    public CustomActionBar setRightImageBitmap(Bitmap bm) {
+        mImgRight.setImageBitmap(bm);
+        return this;
+    }
+
+    /**
+     * 设置右上角图标显示资源
+     *
+     * @param drawable Drawable资源
+     * @return 返回当前实例便于链式操作
+     */
+    public CustomActionBar setRightImageDrawable(Drawable drawable) {
+        mImgRight.setImageDrawable(drawable);
+        return this;
+    }
+
+    /**
+     * 设置右上角图标显示资源
+     *
+     * @param resId 资源文件ID
+     * @return 返回当前实例便于链式操作
+     */
+    public CustomActionBar setRightImageResource(int resId) {
+        mImgRight.setImageResource(resId);
+        return this;
+    }
+    //------------------设置标题-------------------
+
+    /**
+     * 设置标题
+     * @param resId 标题文本资源ID
+     * @return 返回当前实例便于链式操作
+     */
+    public CustomActionBar setTitleText(int resId){
+        mTxtTitle.setText(resId);
+        return this;
+    }
+    /**
+     * 设置标题
+     * @param title 标题文本
+     * @return 返回当前实例便于链式操作
+     */
+    public CustomActionBar setTitleText(CharSequence title){
+        mTxtTitle.setText(title);
+        return this;
+    }
+    /**
+     * 设置标题颜色
+     * @param color 颜色值资源ID
+     * @return 返回当前实例便于链式操作
+     */
+    public CustomActionBar setTitleColor(int color){
+        mTxtTitle.setTextColor(color);
+        return this;
+    }
+    /**
+     * 设置标题字体大小
+     * @param textSize 标题文本字体大小，单位sp
+     * @return 返回当前实例便于链式操作
+     */
+    public CustomActionBar setTitleTextSize(float textSize){
+        mTxtTitle.setTextSize(textSize);
+        return this;
+    }
+    //---------------------getter-----------------
     /**
      * 获取左上角ImageView控件
      *
@@ -118,138 +292,5 @@ public class CustomActionBar extends BaseNavigatorBar {
      */
     public LinearLayout getmLytToolsParent() {
         return mLytToolsParent;
-    }
-
-    //------------------点击事件-----------------
-
-    /**
-     * 左上角ImageView点击事件
-     *
-     * @param l 点击事件
-     * @return
-     */
-    public CustomActionBar setOnLeftImageClickListner(OnClickListener l) {
-        mImgLeft.setOnClickListener(l);
-        return this;
-    }
-
-    /**
-     * 右上角ImageView点击事件
-     *
-     * @param l 点击事件
-     * @return
-     */
-    public CustomActionBar setOnRightImageClickListner(OnClickListener l) {
-        mImgRight.setOnClickListener(l);
-        return this;
-    }
-    //--------------------显示隐藏-------------------
-
-    /**
-     * 设置左上角Image显示与隐藏。
-     *
-     * @param visibility 可选值：{@link android.view.View#VISIBLE},{@link android.view.View#GONE},{@link android.view.View#INVISIBLE}
-     * @return
-     */
-    public CustomActionBar setLeftImageVisibility(int visibility) {
-        mImgLeft.setVisibility(View.VISIBLE);
-        return this;
-    }
-
-    /**
-     * 设置右上角Image显示与隐藏。
-     *
-     * @param visibility 可选值：{@link android.view.View#VISIBLE},{@link android.view.View#GONE},{@link android.view.View#INVISIBLE}
-     * @return
-     */
-    public CustomActionBar setRightImageVisibility(int visibility) {
-        mImgRight.setVisibility(View.VISIBLE);
-        return this;
-    }
-
-    /**
-     * 设置标题显示与隐藏。
-     *
-     * @param visibility 可选值：{@link android.view.View#VISIBLE},{@link android.view.View#GONE},{@link android.view.View#INVISIBLE}
-     * @return
-     */
-    public CustomActionBar setTitleVisibility(int visibility) {
-        mTxtTitle.setVisibility(View.VISIBLE);
-        return this;
-    }
-
-    /**
-     * 设置右上角工具条父容器显示与隐藏，其显示或隐藏会影响到其子控件的可视与否。
-     *
-     * @param visibility 可选值：{@link android.view.View#VISIBLE},{@link android.view.View#GONE},{@link android.view.View#INVISIBLE}
-     * @return
-     */
-    public CustomActionBar setLytToolsParentVisibility(int visibility) {
-        mLytToolsParent.setVisibility(View.VISIBLE);
-        return this;
-    }
-
-    //--------------------Left Image Resource-------------------
-
-    /**
-     * 设置左上角图标显示资源
-     *
-     * @param bm Bitmap资源
-     */
-    public CustomActionBar setLeftImageBitmap(Bitmap bm) {
-        mImgLeft.setImageBitmap(bm);
-        return this;
-    }
-
-    /**
-     * 设置左上角图标显示资源
-     *
-     * @param drawable Drawable资源
-     */
-    public CustomActionBar setLeftImageDrawable(Drawable drawable) {
-        mImgLeft.setImageDrawable(drawable);
-        return this;
-    }
-
-    /**
-     * 设置左上角图标显示资源
-     *
-     * @param resId 资源文件ID
-     */
-    public CustomActionBar setLeftImageResource(int resId) {
-        mImgLeft.setImageResource(resId);
-        return this;
-    }
-
-    //--------------------Right Image Resource-------------------
-
-    /**
-     * 设置右上角图标显示资源
-     *
-     * @param bm Bitmap资源
-     */
-    public CustomActionBar setRightImageBitmap(Bitmap bm) {
-        mImgRight.setImageBitmap(bm);
-        return this;
-    }
-
-    /**
-     * 设置右上角图标显示资源
-     *
-     * @param drawable Drawable资源
-     */
-    public CustomActionBar setRightImageDrawable(Drawable drawable) {
-        mImgRight.setImageDrawable(drawable);
-        return this;
-    }
-
-    /**
-     * 设置右上角图标显示资源
-     *
-     * @param resId 资源文件ID
-     */
-    public CustomActionBar setRightImageResource(int resId) {
-        mImgRight.setImageResource(resId);
-        return this;
     }
 }

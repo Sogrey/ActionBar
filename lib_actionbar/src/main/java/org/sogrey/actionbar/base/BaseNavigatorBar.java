@@ -2,18 +2,29 @@ package org.sogrey.actionbar.base;
 
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.graphics.Color;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 /**
  * Created by Sogrey on 2017/3/12.
  */
 
 public abstract class BaseNavigatorBar extends LinearLayout {
+    protected static final int[] mVisibility = {View.VISIBLE, View.INVISIBLE, View.GONE};
+
+    protected int mTxtTitleColor = Color.parseColor("#ffffff");
+    protected int mTxtColor = mTxtTitleColor;
+    protected int mActionBarBackground = Color.parseColor("#8194AA");
+    protected int mTxtTitleSize = 18;
+    protected int mTxtSize = 15;
+
     protected View mViewRoot;
 
     public BaseNavigatorBar(Context context) {
@@ -64,7 +75,7 @@ public abstract class BaseNavigatorBar extends LinearLayout {
      *
      * @param context      上下文
      * @param attrs        xml里自定义属性
-     * @param defStyleAttr
+     * @param defStyleAttr .
      */
     protected abstract void initAttributes(Context context, AttributeSet attrs, int defStyleAttr);
 

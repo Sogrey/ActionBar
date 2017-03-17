@@ -18,7 +18,7 @@
         android:background="#f00"
         app:leftImage="@mipmap/ic_launcher2"
         app:leftImageVisiable="visible"
-        app:leftText="@string/txt_action_bar_title"
+        app:midText="@string/txt_action_bar_title"
         app:midTextFontColor="#fff"
         app:midTextVisiable="visible"
         app:rightImage="@mipmap/next"
@@ -26,5 +26,54 @@
         app:titleBarBackground="#11A4A3">
 
     </org.sogrey.actionbar.CustomActionBar>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="CustomNavigatorBar" />
+
+    <org.sogrey.actionbar.CustomNavigatorBar
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_action_bar_height"
+        android:background="#f00"
+        app:leftImage="@mipmap/pre"
+        app:leftImageVisiable="visible"
+        app:leftText="@string/txt_action_bar_left"
+        app:rightText="@string/txt_action_bar_right"
+        app:midText="@string/txt_action_bar_title"
+        app:midTextFontColor="#fff"
+        app:midTextVisiable="visible"
+        app:rightImage="@mipmap/next"
+        app:rightImageVisible="visible"
+        app:titleBarBackground="#11A4A3">
+
+    </org.sogrey.actionbar.CustomNavigatorBar>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="CustomSearchBar" />
+
+    <org.sogrey.actionbar.CustomSearchBar
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_action_bar_height"
+        android:background="#f00"
+        app:leftImage="@mipmap/pre"
+        app:leftImageVisiable="visible"
+        app:leftText="@string/txt_action_bar_left"
+        app:rightText="@string/txt_action_bar_right1"
+        app:midSearchHintText="@string/txt_search_bar_hint"
+        app:midSearchHintTextFontColor="#666"
+        app:midSearchTextFontColor="#1c9180"
+        app:midSearchTextVisiable="visible"
+        app:midSearchTextFontSize="15sp"
+        app:rightImage="@mipmap/next"
+        app:drawableSearch="@drawable/search"
+        app:drawableDelete="@drawable/delete"
+        app:rightImageVisible="visible"
+        app:titleBarBackground="#11A4A3">
+
+    </org.sogrey.actionbar.CustomSearchBar>
 
 </LinearLayout>

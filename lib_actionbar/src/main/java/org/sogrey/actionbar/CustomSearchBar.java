@@ -12,41 +12,44 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import org.sogrey.actionbar.Views.SearchEditText;
 import org.sogrey.actionbar.base.BaseNavigatorBar;
 
 /**
- * Created by Sogrey on 2017/3/12.
+ * 自定义搜索栏
+ * Created by Sogrey on 2017/3/14.
  */
 
-public class CustomNavigatorBar extends BaseNavigatorBar {
+public class CustomSearchBar extends BaseNavigatorBar {
     private ImageView mImgLeft, mImgRight;
-    private TextView mTxtTitle, mTxtLeft, mTxtRight;
+    private TextView mTxtLeft, mTxtRight;
     private LinearLayout mLytParentLeft, mLytParentRight;
+    private SearchEditText mEdtCenter;
 
-    public CustomNavigatorBar(Context context) {
+    public CustomSearchBar(Context context) {
         super(context);
     }
 
-    public CustomNavigatorBar(Context context, @Nullable AttributeSet attrs) {
+    public CustomSearchBar(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public CustomNavigatorBar(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public CustomSearchBar(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
-    public CustomNavigatorBar(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    public CustomSearchBar(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
     }
 
     @Override
     protected void initViews(Context context) {
-        setContentView(R.layout.lyt_custom_navigator_bar);
+        setContentView(R.layout.lyt_custom_search_bar);
         mImgLeft = (ImageView) mViewRoot.findViewById(R.id.img_custom_action_bar_left);
         mImgRight = (ImageView) mViewRoot.findViewById(R.id.img_custom_action_bar_right);
         mTxtLeft = (TextView) mViewRoot.findViewById(R.id.txt_custom_action_bar_left);
         mTxtRight = (TextView) mViewRoot.findViewById(R.id.txt_custom_action_bar_right);
-        mTxtTitle = (TextView) mViewRoot.findViewById(R.id.tv_custom_action_bar_title);
+        mEdtCenter = (SearchEditText) mViewRoot.findViewById(R.id.edt_custom_search_bar_center);
         mLytParentLeft = (LinearLayout) mViewRoot.findViewById(R.id.lyt_custom_action_bar_left);
         mLytParentRight = (LinearLayout) mViewRoot.findViewById(R.id.lyt_custom_action_bar_right);
     }
@@ -55,20 +58,25 @@ public class CustomNavigatorBar extends BaseNavigatorBar {
     protected void initAttributes(Context context, AttributeSet attrs, int defStyleAttr) {
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.CustomActionBar, defStyleAttr, 0);
         int actionBarBackground = typedArray.getColor(R.styleable.CustomActionBar_titleBarBackground, mActionBarBackground);
+        int midSearchTextBackgroundResource = typedArray.getInt(R.styleable.CustomActionBar_midSearchTextBackgroundResource, R.drawable.bg_search_edt);
         Drawable leftImageDrawable = typedArray.getDrawable(R.styleable.CustomActionBar_leftImage);
         Drawable rightImageDrawable = typedArray.getDrawable(R.styleable.CustomActionBar_rightImage);
+        Drawable drawableSearch = typedArray.getDrawable(R.styleable.CustomActionBar_drawableSearch);
+        Drawable drawableDelete = typedArray.getDrawable(R.styleable.CustomActionBar_drawableDelete);
         int leftImageVisibility = typedArray.getInt(R.styleable.CustomActionBar_leftImageVisiable, View.VISIBLE);
         int rightImageVisibility = typedArray.getInt(R.styleable.CustomActionBar_rightImageVisible, View.VISIBLE);
-        int midTitleVisibility = typedArray.getInt(R.styleable.CustomActionBar_midTextVisiable, View.VISIBLE);
+        int midSearchTextVisibility = typedArray.getInt(R.styleable.CustomActionBar_midSearchTextVisiable, View.VISIBLE);
         int leftTextVisibility = typedArray.getInt(R.styleable.CustomActionBar_leftTextVisibale, View.VISIBLE);
         int rightTextVisibility = typedArray.getInt(R.styleable.CustomActionBar_rightTextVisible, View.VISIBLE);
-        int midTitleColor = typedArray.getColor(R.styleable.CustomActionBar_midTextFontColor, mTxtTitleColor);
+        int midSearchTextColor = typedArray.getColor(R.styleable.CustomActionBar_midSearchTextFontColor, mTxtTitleColor);
+        int midSearchHintTextFontColor = typedArray.getColor(R.styleable.CustomActionBar_midSearchHintTextFontColor, mTxtTitleColor);
         int leftTextColor = typedArray.getColor(R.styleable.CustomActionBar_leftTextColor, mTxtColor);
         int rightTextColor = typedArray.getColor(R.styleable.CustomActionBar_rightTextColor, mTxtColor);
-        float midTitleSize = typedArray.getDimension(R.styleable.CustomActionBar_midTextFontSize, mTxtTitleSize);
+        float midSearchTextSize = typedArray.getDimension(R.styleable.CustomActionBar_midSearchTextFontSize, mTxtTitleSize);
         float leftTextSize = typedArray.getDimension(R.styleable.CustomActionBar_leftTextFontSize, mTxtSize);
         float rightTextSize = typedArray.getDimension(R.styleable.CustomActionBar_rightTextFontSize, mTxtSize);
-        String midTitleText = typedArray.getString(R.styleable.CustomActionBar_midText);
+        String midSearchText = typedArray.getString(R.styleable.CustomActionBar_midSearchText);
+        String midSearchHintText = typedArray.getString(R.styleable.CustomActionBar_midSearchHintText);
         String leftText = typedArray.getString(R.styleable.CustomActionBar_leftText);
         String rightText = typedArray.getString(R.styleable.CustomActionBar_rightText);
 
@@ -78,20 +86,29 @@ public class CustomNavigatorBar extends BaseNavigatorBar {
         mImgRight.setImageDrawable(rightImageDrawable);
         mImgLeft.setVisibility(mVisibility[leftImageVisibility]);
         mImgRight.setVisibility(mVisibility[rightImageVisibility]);
-        mTxtTitle.setVisibility(mVisibility[midTitleVisibility]);
+        mEdtCenter.setVisibility(mVisibility[midSearchTextVisibility]);
         mTxtLeft.setVisibility(mVisibility[leftTextVisibility]);
         mTxtRight.setVisibility(mVisibility[rightTextVisibility]);
-        mTxtTitle.setTextColor(midTitleColor);
+        mEdtCenter.setTextColor(midSearchTextColor);
         mTxtLeft.setTextColor(leftTextColor);
         mTxtRight.setTextColor(rightTextColor);
-        mTxtTitle.setText(midTitleText);
+        mEdtCenter.setText(midSearchText);
         mTxtLeft.setText(leftText);
         mTxtRight.setText(rightText);
-        mTxtTitle.setTextSize(TypedValue.COMPLEX_UNIT_SP, midTitleSize);
+        mEdtCenter.setTextSize(TypedValue.COMPLEX_UNIT_SP, midSearchTextSize);
         mTxtLeft.setTextSize(TypedValue.COMPLEX_UNIT_SP, leftTextSize);
         mTxtRight.setTextSize(TypedValue.COMPLEX_UNIT_SP, rightTextSize);
 
+        mEdtCenter.setHint(midSearchHintText);
+        mEdtCenter.setHintTextColor(midSearchHintTextFontColor);
+        mEdtCenter.setBackgroundResource(midSearchTextBackgroundResource);
+        setDrawableDelTmp(drawableDelete);
+        setDrawableLeft(drawableSearch);
+
         typedArray.recycle();
+
+        setFocusable(true);
+        setFocusableInTouchMode(true);
     }
 
     //----------------点击事件-----------------
@@ -102,7 +119,7 @@ public class CustomNavigatorBar extends BaseNavigatorBar {
      * @param l 点击事件
      * @return 返回当前实例便于链式操作
      */
-    public CustomNavigatorBar setOnLeftImageClickListner(OnClickListener l) {
+    public CustomSearchBar setOnLeftImageClickListner(OnClickListener l) {
         mImgLeft.setOnClickListener(l);
         return this;
     }
@@ -113,7 +130,7 @@ public class CustomNavigatorBar extends BaseNavigatorBar {
      * @param l 点击事件
      * @return 返回当前实例便于链式操作
      */
-    public CustomNavigatorBar setOnRightImageClickListner(OnClickListener l) {
+    public CustomSearchBar setOnRightImageClickListner(OnClickListener l) {
         mImgRight.setOnClickListener(l);
         return this;
     }
@@ -124,7 +141,7 @@ public class CustomNavigatorBar extends BaseNavigatorBar {
      * @param l 点击事件
      * @return 返回当前实例便于链式操作
      */
-    public CustomNavigatorBar setOnLeftTextClickListner(OnClickListener l) {
+    public CustomSearchBar setOnLeftTextClickListner(OnClickListener l) {
         mTxtLeft.setOnClickListener(l);
         return this;
     }
@@ -135,7 +152,7 @@ public class CustomNavigatorBar extends BaseNavigatorBar {
      * @param l 点击事件
      * @return 返回当前实例便于链式操作
      */
-    public CustomNavigatorBar setOnRightTextClickListner(OnClickListener l) {
+    public CustomSearchBar setOnRightTextClickListner(OnClickListener l) {
         mTxtRight.setOnClickListener(l);
         return this;
     }
@@ -146,7 +163,7 @@ public class CustomNavigatorBar extends BaseNavigatorBar {
      * @param l 点击事件
      * @return 返回当前实例便于链式操作
      */
-    public CustomNavigatorBar setOnLeftParentLayoutClickListner(OnClickListener l) {
+    public CustomSearchBar setOnLeftParentLayoutClickListner(OnClickListener l) {
         mLytParentLeft.setOnClickListener(l);
         return this;
     }
@@ -157,7 +174,7 @@ public class CustomNavigatorBar extends BaseNavigatorBar {
      * @param l 点击事件
      * @return 返回当前实例便于链式操作
      */
-    public CustomNavigatorBar setOnRightParentLayoutClickListner(OnClickListener l) {
+    public CustomSearchBar setOnRightParentLayoutClickListner(OnClickListener l) {
         mLytParentRight.setOnClickListener(l);
         return this;
     }
@@ -169,7 +186,7 @@ public class CustomNavigatorBar extends BaseNavigatorBar {
      * @param visibility 可选值：{@link android.view.View#VISIBLE},{@link android.view.View#GONE},{@link android.view.View#INVISIBLE}
      * @return 返回当前实例便于链式操作
      */
-    public CustomNavigatorBar setLeftImageVisibility(int visibility) {
+    public CustomSearchBar setLeftImageVisibility(int visibility) {
         mImgLeft.setVisibility(View.VISIBLE);
         return this;
     }
@@ -180,19 +197,19 @@ public class CustomNavigatorBar extends BaseNavigatorBar {
      * @param visibility 可选值：{@link android.view.View#VISIBLE},{@link android.view.View#GONE},{@link android.view.View#INVISIBLE}
      * @return 返回当前实例便于链式操作
      */
-    public CustomNavigatorBar setRightImageVisibility(int visibility) {
+    public CustomSearchBar setRightImageVisibility(int visibility) {
         mImgRight.setVisibility(View.VISIBLE);
         return this;
     }
 
     /**
-     * 设置标题显示与隐藏。
+     * 设置搜索输入框显示与隐藏。
      *
      * @param visibility 可选值：{@link android.view.View#VISIBLE},{@link android.view.View#GONE},{@link android.view.View#INVISIBLE}
      * @return 返回当前实例便于链式操作
      */
-    public CustomNavigatorBar setTitleVisibility(int visibility) {
-        mTxtTitle.setVisibility(View.VISIBLE);
+    public CustomSearchBar setTitleVisibility(int visibility) {
+        mEdtCenter.setVisibility(View.VISIBLE);
         return this;
     }
 
@@ -202,7 +219,7 @@ public class CustomNavigatorBar extends BaseNavigatorBar {
      * @param visibility 可选值：{@link android.view.View#VISIBLE},{@link android.view.View#GONE},{@link android.view.View#INVISIBLE}
      * @return 返回当前实例便于链式操作
      */
-    public CustomNavigatorBar setLeftParentLayoutVisibility(int visibility) {
+    public CustomSearchBar setLeftParentLayoutVisibility(int visibility) {
         mLytParentLeft.setVisibility(View.VISIBLE);
         return this;
     }
@@ -213,7 +230,7 @@ public class CustomNavigatorBar extends BaseNavigatorBar {
      * @param visibility 可选值：{@link android.view.View#VISIBLE},{@link android.view.View#GONE},{@link android.view.View#INVISIBLE}
      * @return 返回当前实例便于链式操作
      */
-    public CustomNavigatorBar setRightParentLayoutVisibility(int visibility) {
+    public CustomSearchBar setRightParentLayoutVisibility(int visibility) {
         mLytParentRight.setVisibility(View.VISIBLE);
         return this;
     }
@@ -225,7 +242,7 @@ public class CustomNavigatorBar extends BaseNavigatorBar {
      * @param bm Bitmap资源
      * @return 返回当前实例便于链式操作
      */
-    public CustomNavigatorBar setLeftImageBitmap(Bitmap bm) {
+    public CustomSearchBar setLeftImageBitmap(Bitmap bm) {
         mImgLeft.setImageBitmap(bm);
         return this;
     }
@@ -236,7 +253,7 @@ public class CustomNavigatorBar extends BaseNavigatorBar {
      * @param drawable Drawable资源
      * @return 返回当前实例便于链式操作
      */
-    public CustomNavigatorBar setLeftImageDrawable(Drawable drawable) {
+    public CustomSearchBar setLeftImageDrawable(Drawable drawable) {
         mImgLeft.setImageDrawable(drawable);
         return this;
     }
@@ -247,7 +264,7 @@ public class CustomNavigatorBar extends BaseNavigatorBar {
      * @param resId 资源文件ID
      * @return 返回当前实例便于链式操作
      */
-    public CustomNavigatorBar setLeftImageResource(int resId) {
+    public CustomSearchBar setLeftImageResource(int resId) {
         mImgLeft.setImageResource(resId);
         return this;
     }
@@ -260,7 +277,7 @@ public class CustomNavigatorBar extends BaseNavigatorBar {
      * @param bm Bitmap资源
      * @return 返回当前实例便于链式操作
      */
-    public CustomNavigatorBar setRightImageBitmap(Bitmap bm) {
+    public CustomSearchBar setRightImageBitmap(Bitmap bm) {
         mImgRight.setImageBitmap(bm);
         return this;
     }
@@ -271,7 +288,7 @@ public class CustomNavigatorBar extends BaseNavigatorBar {
      * @param drawable Drawable资源
      * @return 返回当前实例便于链式操作
      */
-    public CustomNavigatorBar setRightImageDrawable(Drawable drawable) {
+    public CustomSearchBar setRightImageDrawable(Drawable drawable) {
         mImgRight.setImageDrawable(drawable);
         return this;
     }
@@ -282,7 +299,7 @@ public class CustomNavigatorBar extends BaseNavigatorBar {
      * @param resId 资源文件ID
      * @return 返回当前实例便于链式操作
      */
-    public CustomNavigatorBar setRightImageResource(int resId) {
+    public CustomSearchBar setRightImageResource(int resId) {
         mImgRight.setImageResource(resId);
         return this;
     }
@@ -294,7 +311,7 @@ public class CustomNavigatorBar extends BaseNavigatorBar {
      * @param resId 文本资源ID
      * @return 返回当前实例便于链式操作
      */
-    public CustomNavigatorBar setLeftText(int resId) {
+    public CustomSearchBar setLeftText(int resId) {
         mTxtLeft.setText(resId);
         return this;
     }
@@ -305,7 +322,7 @@ public class CustomNavigatorBar extends BaseNavigatorBar {
      * @param title 文本字符串
      * @return 返回当前实例便于链式操作
      */
-    public CustomNavigatorBar setLeftText(CharSequence title) {
+    public CustomSearchBar setLeftText(CharSequence title) {
         mTxtLeft.setText(title);
         return this;
     }
@@ -316,7 +333,7 @@ public class CustomNavigatorBar extends BaseNavigatorBar {
      * @param color 颜色值资源ID
      * @return 返回当前实例便于链式操作
      */
-    public CustomNavigatorBar setLeftTextColor(int color) {
+    public CustomSearchBar setLeftTextColor(int color) {
         mTxtLeft.setTextColor(color);
         return this;
     }
@@ -327,7 +344,7 @@ public class CustomNavigatorBar extends BaseNavigatorBar {
      * @param textSize 标题文本字体大小，单位sp
      * @return 返回当前实例便于链式操作
      */
-    public CustomNavigatorBar setLeftTextSize(float textSize) {
+    public CustomSearchBar setLeftTextSize(float textSize) {
         mTxtLeft.setTextSize(textSize);
         return this;
     }
@@ -339,7 +356,7 @@ public class CustomNavigatorBar extends BaseNavigatorBar {
      * @param resId 标题文本资源ID
      * @return 返回当前实例便于链式操作
      */
-    public CustomNavigatorBar setRightText(int resId) {
+    public CustomSearchBar setRightText(int resId) {
         mTxtRight.setText(resId);
         return this;
     }
@@ -350,7 +367,7 @@ public class CustomNavigatorBar extends BaseNavigatorBar {
      * @param title 标题文本
      * @return 返回当前实例便于链式操作
      */
-    public CustomNavigatorBar setRightText(CharSequence title) {
+    public CustomSearchBar setRightText(CharSequence title) {
         mTxtRight.setText(title);
         return this;
     }
@@ -361,7 +378,7 @@ public class CustomNavigatorBar extends BaseNavigatorBar {
      * @param color 颜色值资源ID
      * @return 返回当前实例便于链式操作
      */
-    public CustomNavigatorBar setRightTextColor(int color) {
+    public CustomSearchBar setRightTextColor(int color) {
         mTxtRight.setTextColor(color);
         return this;
     }
@@ -372,53 +389,86 @@ public class CustomNavigatorBar extends BaseNavigatorBar {
      * @param textSize 标题文本字体大小，单位sp
      * @return 返回当前实例便于链式操作
      */
-    public CustomNavigatorBar setRightTextSize(float textSize) {
+    public CustomSearchBar setRightTextSize(float textSize) {
         mTxtRight.setTextSize(textSize);
         return this;
     }
-    //------------------设置标题-------------------
+    //------------------设置搜索框内容和提示-------------------
 
     /**
-     * 设置标题
+     * 设置搜索输入框内容
      *
-     * @param resId 标题文本资源ID
+     * @param resId 搜索输入框文本资源ID
      * @return 返回当前实例便于链式操作
      */
-    public CustomNavigatorBar setTitleText(int resId) {
-        mTxtTitle.setText(resId);
+    public CustomSearchBar setSearchText(int resId) {
+        mEdtCenter.setText(resId);
         return this;
     }
 
     /**
-     * 设置标题
+     * 设置搜索输入框内容
      *
-     * @param title 标题文本
+     * @param title 搜索输入框内容文本
      * @return 返回当前实例便于链式操作
      */
-    public CustomNavigatorBar setTitleText(CharSequence title) {
-        mTxtTitle.setText(title);
+    public CustomSearchBar setSearchText(CharSequence title) {
+        mEdtCenter.setText(title);
         return this;
     }
 
     /**
-     * 设置标题颜色
+     * 设置搜索输入框内容文本颜色
      *
      * @param color 颜色值资源ID
      * @return 返回当前实例便于链式操作
      */
-    public CustomNavigatorBar setTitleColor(int color) {
-        mTxtTitle.setTextColor(color);
+    public CustomSearchBar setSearchColor(int color) {
+        mEdtCenter.setTextColor(color);
         return this;
     }
 
     /**
-     * 设置标题字体大小
+     * 设置搜索输入框内容字体大小
      *
      * @param textSize 标题文本字体大小，单位sp
      * @return 返回当前实例便于链式操作
      */
-    public CustomNavigatorBar setTitleTextSize(float textSize) {
-        mTxtTitle.setTextSize(textSize);
+    public CustomSearchBar setSearchTextSize(float textSize) {
+        mEdtCenter.setTextSize(textSize);
+        return this;
+    }
+
+    /**
+     * 设置搜索输入框提示内容
+     *
+     * @param resId 搜索输入框提示内容文本资源ID
+     * @return 返回当前实例便于链式操作
+     */
+    public CustomSearchBar setSearchHintText(int resId) {
+        mEdtCenter.setHint(resId);
+        return this;
+    }
+
+    /**
+     * 设置搜索输入框提示内容
+     *
+     * @param title 搜索输入框提示内容
+     * @return 返回当前实例便于链式操作
+     */
+    public CustomSearchBar setSearchHintText(CharSequence title) {
+        mEdtCenter.setHint(title);
+        return this;
+    }
+
+    /**
+     * 设置搜索输入框提示内容文本颜色
+     *
+     * @param color 颜色值资源ID
+     * @return 返回当前实例便于链式操作
+     */
+    public CustomSearchBar setSearchHintTextColor(int color) {
+        mEdtCenter.setHintTextColor(color);
         return this;
     }
 
@@ -443,12 +493,12 @@ public class CustomNavigatorBar extends BaseNavigatorBar {
     }
 
     /**
-     * 获取标题TextView
+     * 获取标题{@link SearchEditText}
      *
-     * @return 标题TextView
+     * @return 标题{@link SearchEditText}
      */
-    public TextView getmTxtTitle() {
-        return mTxtTitle;
+    public SearchEditText getmEdtSearchCenter() {
+        return mEdtCenter;
     }
 
     /**
@@ -485,5 +535,26 @@ public class CustomNavigatorBar extends BaseNavigatorBar {
      */
     public LinearLayout getmLytParentRight() {
         return mLytParentRight;
+    }
+
+    /**
+     * 设置删除按钮暂存资源
+     *
+     * @param drawableDelTmp 删除按钮暂存资源
+     * @return 返回本实例便于链式操作
+     */
+    public CustomSearchBar setDrawableDelTmp(Drawable drawableDelTmp) {
+        mEdtCenter.setDrawableDelTmp(drawableDelTmp);
+        return this;
+    }
+
+    /**
+     * 设置搜索图标资源
+     *
+     * @return 返回本实例便于链式操作
+     */
+    public CustomSearchBar setDrawableLeft(Drawable d) {
+        mEdtCenter.setDrawableLeft(d);
+        return this;
     }
 }

@@ -4,5 +4,9 @@
     <dimen name="dimen_action_bar_title_fontsize">18sp</dimen>
     <dimen name="dimen_action_bar_img_width">@dimen/dimen_action_bar_height</dimen>
     <dimen name="dimen_action_bar_v_padding">5dp</dimen>
+    <dimen name="dimen_action_bar_view_space_padding">15dp</dimen>
+    <dimen name="dimen_search_bar_edt_padding_tb">3dp</dimen>
+    <dimen name="dimen_search_bar_edt_padding_lr">5dp</dimen>
+
 
 </resources>

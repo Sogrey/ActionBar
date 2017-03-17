@@ -32,6 +32,4 @@
             android:padding="@dimen/dimen_action_bar_v_padding"
             android:src="@drawable/ic_launcher" />
     </LinearLayout>
-
-
 </merge>

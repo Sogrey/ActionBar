@@ -2,6 +2,11 @@
 <resources>
     <item name="img_custom_action_bar_left" type="id" />
     <item name="img_custom_action_bar_right" type="id" />
+    <item name="txt_custom_action_bar_left" type="id" />
+    <item name="txt_custom_action_bar_right" type="id" />
     <item name="tv_custom_action_bar_title" type="id" />
     <item name="lyt_custom_action_bar_tools" type="id" />
+    <item name="lyt_custom_action_bar_left" type="id" />
+    <item name="lyt_custom_action_bar_right" type="id" />
+    <item name="edt_custom_search_bar_center" type="id" />
 </resources>

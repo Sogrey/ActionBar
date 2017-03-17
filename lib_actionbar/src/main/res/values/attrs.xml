@@ -33,6 +33,22 @@
         </attr>
         <attr name="midTextFontSize" format="dimension|reference" />
         <attr name="midTextFontColor" format="color|reference" />
+        <attr name="midSearchText" format="string|reference" />
+        <attr name="midSearchTextVisiable">
+            <!-- Visible on screen; the default value. -->
+            <enum name="visible" value="0" />
+            <!-- Not displayed, but taken into account during layout (space is left for it). -->
+            <enum name="invisible" value="1" />
+            <!-- Completely hidden, as if the view had not been added. -->
+            <enum name="gone" value="2" />
+        </attr>
+        <attr name="midSearchTextFontSize" format="dimension|reference" />
+        <attr name="midSearchTextFontColor" format="color|reference" />
+        <attr name="midSearchTextBackgroundResource" format="reference" />
+        <attr name="midSearchHintText" format="string|reference" />
+        <attr name="midSearchHintTextFontColor" format="color|reference" />
+        <attr name="drawableSearch" format="reference" />
+        <attr name="drawableDelete" format="reference" />
         <attr name="rightText" format="string|reference" />
         <attr name="rightTextVisible">
             <!-- Visible on screen; the default value. -->

@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">ActionBar</string>
     <string name="txt_action_bar_title">这是标题</string>
+    <string name="txt_action_bar_left">返回</string>
+    <string name="txt_action_bar_right">提交</string>
+    <string name="txt_action_bar_right1">筛选</string>
+    <string name="txt_search_bar_hint">请输入要检索的关键词</string>
 </resources>
